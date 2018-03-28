@@ -14,30 +14,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    lazy var infoLabel: UILabel = {
+        let label = UILabel(frame: CGRect.zero)
+        label.textAlignment = .center
+        label.backgroundColor = .white
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
         sceneView.showsStatistics = true
         
-        let scene = SCNScene(named: "art.scnassets/tiantannew.scn")!
+        let scene = SCNScene(named: "tiantan.scnassets/tiantannew.DAE")!
         print(scene.rootNode.childNodes)
-        let tiantan = scene.rootNode.childNodes[1]
-        
-        let camera = SCNCamera()
-        let cameraNode = SCNNode()
-        cameraNode.camera = camera
-        cameraNode.position = SCNVector3Make(0, 0, 100)
-        scene.rootNode.addChildNode(cameraNode)
-        
+        print(sceneView.frame)
         sceneView.scene = scene
+        
+        view.addSubview(infoLabel)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        infoLabel.frame = CGRect(x: 0, y: 16, width: view.bounds.width, height: 64)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let configuration = ARWorldTrackingConfiguration()
-        sceneView.session.run(configuration)
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,19 +52,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        var status = "Loading..."
+        switch camera.trackingState {
+        case ARCamera.TrackingState.notAvailable:
+            status = "Not available"
+        case ARCamera.TrackingState.limited(_):
+            status = "Analyzing..."
+        case ARCamera.TrackingState.normal:
+            status = "Ready"
+        }
+        infoLabel.text = status
     }
 }

@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		2F52B8862067C6BF007CDBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F52B8852067C6BF007CDBFA /* AppDelegate.swift */; };
-		2F52B8882067C6BF007CDBFA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F52B8872067C6BF007CDBFA /* art.scnassets */; };
 		2F52B88A2067C6BF007CDBFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F52B8892067C6BF007CDBFA /* ViewController.swift */; };
 		2F52B88D2067C6BF007CDBFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F52B88B2067C6BF007CDBFA /* Main.storyboard */; };
 		2F52B88F2067C6BF007CDBFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F52B88E2067C6BF007CDBFA /* Assets.xcassets */; };
 		2F52B8922067C6BF007CDBFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F52B8902067C6BF007CDBFA /* LaunchScreen.storyboard */; };
+		2F818CC7206B7BED00E39CAE /* tiantan.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F818CC6206B7BED00E39CAE /* tiantan.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F52B8822067C6BF007CDBFA /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F52B8852067C6BF007CDBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F52B8872067C6BF007CDBFA /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		2F52B8892067C6BF007CDBFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2F52B88C2067C6BF007CDBFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F52B88E2067C6BF007CDBFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F52B8912067C6BF007CDBFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F52B8932067C6BF007CDBFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F818CC6206B7BED00E39CAE /* tiantan.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = tiantan.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +56,8 @@
 		2F52B8842067C6BF007CDBFA /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				2F818CC6206B7BED00E39CAE /* tiantan.scnassets */,
 				2F52B8852067C6BF007CDBFA /* AppDelegate.swift */,
-				2F52B8872067C6BF007CDBFA /* art.scnassets */,
 				2F52B8892067C6BF007CDBFA /* ViewController.swift */,
 				2F52B88B2067C6BF007CDBFA /* Main.storyboard */,
 				2F52B88E2067C6BF007CDBFA /* Assets.xcassets */,
@@ -126,7 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F52B8882067C6BF007CDBFA /* art.scnassets in Resources */,
+				2F818CC7206B7BED00E39CAE /* tiantan.scnassets in Resources */,
 				2F52B8922067C6BF007CDBFA /* LaunchScreen.storyboard in Resources */,
 				2F52B88F2067C6BF007CDBFA /* Assets.xcassets in Resources */,
 				2F52B88D2067C6BF007CDBFA /* Main.storyboard in Resources */,
