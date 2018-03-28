@@ -10,40 +10,37 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    
-    lazy var infoLabel: UILabel = {
-        let label = UILabel(frame: CGRect.zero)
-        label.textAlignment = .center
-        label.backgroundColor = .white
-        return label
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
         sceneView.showsStatistics = true
+        sceneView.session.delegate = self
+        
+//        let scene = SCNScene(named: "tiantan.scnassets/ship.scn")!
         
         let scene = SCNScene(named: "tiantan.scnassets/tiantannew.DAE")!
-        print(scene.rootNode.childNodes)
-        print(sceneView.frame)
-        sceneView.scene = scene
+//        let tiantan = scene.rootNode.childNode(withName: "_D_Models_at_3dxy", recursively: true)!
+//        print(tiantan.scale)
+//        let action = SCNAction.scale(by: 0.1, duration: 1.0)
+//        tiantan.runAction(action)
         
-        view.addSubview(infoLabel)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        infoLabel.frame = CGRect(x: 0, y: 16, width: view.bounds.width, height: 64)
+//        print(tiantan.scale)
+        print(sceneView.frame)
+        
+        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
@@ -52,16 +49,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-        var status = "Loading..."
-        switch camera.trackingState {
-        case ARCamera.TrackingState.notAvailable:
-            status = "Not available"
-        case ARCamera.TrackingState.limited(_):
-            status = "Analyzing..."
-        case ARCamera.TrackingState.normal:
-            status = "Ready"
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        print(frame.camera.transform)
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        print("anchor: \(anchor)")
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        guard let pointOfView = sceneView.pointOfView else {
+            return
         }
-        infoLabel.text = status
+        let transform = pointOfView.transform
+        let orientation = SCNVector3(-transform.m31, -transform.m32, transform.m33)
+        let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+        print("----")
+        print(orientation)
+        print(location)
+        print("----")
     }
 }
