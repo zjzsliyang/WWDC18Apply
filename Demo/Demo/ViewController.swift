@@ -10,8 +10,8 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
-
+class ViewController: UIViewController, ARSCNViewDelegate {
+    
     @IBOutlet var sceneView: ARSCNView!
     
     override func viewDidLoad() {
@@ -19,20 +19,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
         sceneView.delegate = self
         sceneView.showsStatistics = true
-        sceneView.session.delegate = self
+        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
         
-//        let scene = SCNScene(named: "tiantan.scnassets/ship.scn")!
-        
-        let scene = SCNScene(named: "tiantan.scnassets/tiantannew.DAE")!
-//        let tiantan = scene.rootNode.childNode(withName: "_D_Models_at_3dxy", recursively: true)!
-//        print(tiantan.scale)
-//        let action = SCNAction.scale(by: 0.1, duration: 1.0)
-//        tiantan.runAction(action)
-        
-//        print(tiantan.scale)
-        print(sceneView.frame)
-        
-        sceneView.scene = scene
+//        let scene = SCNScene(named: "tiantan.scnassets/tiantannew.DAE")!
+//        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +31,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         configuration.isLightEstimationEnabled = true
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,24 +39,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         sceneView.session.pause()
     }
     
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        print(frame.camera.transform)
-    }
-    
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        print("anchor: \(anchor)")
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        guard let pointOfView = sceneView.pointOfView else {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else {
             return
         }
-        let transform = pointOfView.transform
-        let orientation = SCNVector3(-transform.m31, -transform.m32, transform.m33)
-        let location = SCNVector3(transform.m41, transform.m42, transform.m43)
-        print("----")
-        print(orientation)
-        print(location)
-        print("----")
+        let x = CGFloat(planeAnchor.center.x)
+        let y = CGFloat(planeAnchor.center.y)
+        let z = CGFloat(planeAnchor.center.z)
+        guard let tiantanScene = SCNScene(named: "tiantan.scnassets/tiantannew.DAE"),
+            let tiantanNode = tiantanScene.rootNode.childNode(withName: "_D_Models_at_3dxy", recursively: true)
+            else { return }
+
+        tiantanNode.runAction(SCNAction.scale(by: 0.1, duration: 1.0))
+        tiantanNode.position = SCNVector3(x - 1, y, z)
+
+        node.addChildNode(tiantanNode)
+
     }
+    
 }
