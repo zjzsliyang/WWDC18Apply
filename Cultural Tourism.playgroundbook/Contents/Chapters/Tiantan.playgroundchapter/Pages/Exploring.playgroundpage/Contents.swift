@@ -15,7 +15,7 @@ page.needsIndefiniteExecution = true
 let proxy = page.liveView as? PlaygroundRemoteLiveViewProxy
 
 func explore() {
-  proxy?.send(PlaygroundValue.string("explore"))
+  proxy?.send(.string("explore"))
 }
 
 //#-end-hidden-code

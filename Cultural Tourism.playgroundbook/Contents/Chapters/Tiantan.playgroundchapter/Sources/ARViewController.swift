@@ -16,6 +16,7 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
     var imageView = UIImageView()
     var backgroundView = UIImageView()
     var blurView: UIVisualEffectView?
+    var cnt = 0
 
     lazy var isARWorldTrackingSupported: Bool = { return ARWorldTrackingConfiguration.isSupported }()
 
@@ -110,8 +111,8 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         configuration.isLightEstimationEnabled = true
-        // arscnView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        arscnView.session.run(configuration)
+        arscnView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+//        arscnView.session.run(configuration)
         
         // Automatic VoiceOver to notify user screen is now on camera view
         let axScreenDescription = NSLocalizedString("The screen is now displaying a direct camera feed.", comment: "Camera screen description initial page.")
@@ -122,34 +123,33 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         guard let planeAnchor = anchor as? ARPlaneAnchor else {
             return
         }
-        let x = CGFloat(planeAnchor.center.x)
-        let y = CGFloat(planeAnchor.center.y)
-        let z = CGFloat(planeAnchor.center.z)
-        let tiantanScene = SCNScene(named: "art.scnassets/tiantannew.scn")!
-        let tiantanNode = tiantanScene.rootNode.childNode(withName: "_D_Models_at_3dxy", recursively: true)!
-        // guard let tiantanScene = SCNScene(named: "tiantan.scnassets/tiantannew.DAE"),
-        //     let tiantanNode = tiantanScene.rootNode.childNode(withName: "_D_Models_at_3dxy", recursively: true)
-        //     else { return }
-        print(tiantanNode)
-        tiantanNode.runAction(SCNAction.scale(by: 0.1, duration: 1.0))
-        tiantanNode.position = SCNVector3(x - 1, y, z)
-        
-        node.addChildNode(tiantanNode)
+        // TODO: to be optimized
+        if cnt == 0 {
+            let x = CGFloat(planeAnchor.center.x)
+            let y = CGFloat(planeAnchor.center.y)
+            let z = CGFloat(planeAnchor.center.z)
+            let tiantanScene = SCNScene(named: "art.scnassets/tiantannew.scn")!
+            let tiantanNode = tiantanScene.rootNode.childNode(withName: "_D_Models_at_3dxy", recursively: true)!
+
+            tiantanNode.runAction(SCNAction.scale(by: 0.1, duration: 1.0))
+            tiantanNode.position = SCNVector3(x - 1, y, z)
+            
+            node.addChildNode(tiantanNode)
+            cnt += 1
+        }
     }
 }
 
 @available(iOS 11.0, *)
 extension ARViewController: PlaygroundLiveViewMessageHandler {
     public func receive(_ message: PlaygroundValue) {
-        explore()
-
-        // guard let liveViewMessage = PlaygroundMessageToLiveView(playgroundValue: message) else { return }
-        
-        // switch liveViewMessage {
-        // case .explore:
-        //     explore()
-        // default:
-        //     break
-        // }
+        switch message {
+        case let .string(text):
+            if text == "explore" {
+                explore()
+            }
+        default:
+            break
+        }
     }
 }

@@ -14,11 +14,11 @@ let page = PlaygroundPage.current
 let proxy = page.liveView as? PlaygroundRemoteLiveViewProxy
 
 func polish() {
-  proxy?.send(PlaygroundValue.string("polish"))
+  proxy?.send(.string("polish"))
 }
 
 func recognize() {
-    proxy?.send(PlaygroundValue.string("recognize"))
+    proxy?.send(.string("recognize"))
 }
 
 //#-end-hidden-code

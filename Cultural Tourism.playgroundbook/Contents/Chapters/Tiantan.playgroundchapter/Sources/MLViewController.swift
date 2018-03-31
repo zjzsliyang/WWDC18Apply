@@ -28,7 +28,6 @@ public class MLViewController: UIViewController {
         backgroundView.frame = view.bounds
         view.addSubview(backgroundView)
 
-        // view.backgroundColor = UIColor.white
         backgroundView1.image = UIImage(named: "bg1.png")
         backgroundView1.frame = CGRect(x: 0, y: 0, width: 1200 / 3.0 , height: 581 / 3.0)
         view.addSubview(backgroundView1)
@@ -46,19 +45,17 @@ public class MLViewController: UIViewController {
     }
 
     func polish() {
-        // TODO: add animation
+        // TODO: add imageview animation
         paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival_res.jpg")
         paintings2.image = UIImage(named: "DwellingintheFuchunMountain_res.jpg")
 
-
+        // TODO: add line animation
     }
 
     func recognize() {
         recognitionLabel1.frame = CGRect(x: 420, y: 10, width: 250, height: 200)
         recognitionLabel2.frame = CGRect(x: 50, y: 450 + 800 / 6.0 + 150, width: 300, height: 200)
-        // recognitionLabel1.lineBreakMode = .byWordWrapping
         recognitionLabel1.numberOfLines = 0
-        // recognitionLabel2.lineBreakMode = .byWordWrapping
         recognitionLabel2.numberOfLines = 0
         
         recognizeUsingVision(image: paintings1.image!, label: recognitionLabel1)
@@ -98,15 +95,16 @@ public class MLViewController: UIViewController {
 @available(iOS 11.2, *)
 extension MLViewController: PlaygroundLiveViewMessageHandler {
     public func receive(_ message: PlaygroundValue) {
-        polish()
-        recognize()
-        // guard let liveViewMessage = PlaygroundMessageToLiveView(playgroundValue: message) else { return }
-        
-        // switch liveViewMessage {
-        // case .polish:
-        //     polish()
-        // default:
-        //     break
-        // }
+        switch message {
+        case let .string(text):
+            if text == "polish" {
+                polish()
+            }
+            if text == "recognize" {
+                recognize()
+            }
+        default:
+            break
+        }
     }
 }
