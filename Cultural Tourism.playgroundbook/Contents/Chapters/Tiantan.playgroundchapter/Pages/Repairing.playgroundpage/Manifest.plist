@@ -2,37 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Hints</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<string>
-Don&apos;t forget the formula that Circular Motion fits:
-
-F = m*v^2/R
-</string>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<string>
-The object is subjected to gravity:
-
-F = m*g
-</string>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<string>
-This is just the answer!
-
-v = sqrt(g*R)
-</string>
-		</dict>
-	</array>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Name</key>
-	<string>Circular Motion</string>
+	<string>Repairing</string>
 	<key>LiveViewMode</key>
 	<string>VisibleByDefault</string>
 </dict>

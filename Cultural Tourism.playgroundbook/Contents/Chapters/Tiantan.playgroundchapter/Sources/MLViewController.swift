@@ -32,11 +32,30 @@ public class MLViewController: UIViewController {
         backgroundView2.frame = CGRect(x: 420, y: 700, width: 485 / 2.0, height: 674 / 2.0)
         view.addSubview(backgroundView2)
 
-        paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival.jpg")
-        paintings2.image = UIImage(named: "AThousandMilesofRiversandMountains.jpg")
+        paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival_bw.jpg")
+        paintings2.image = UIImage(named: "DwellingintheFuchunMountain_bw.jpg")
         paintings1.frame = CGRect(x: 0, y: 230, width: 800, height: 800 / 6.0)
         paintings2.frame = CGRect(x: 0, y: 450 + 800 / 6.0, width: 800, height: 800 / 6.0)
         view.addSubview(paintings1)
         view.addSubview(paintings2)
+    }
+
+    func repairing() {
+
+    }
+}
+
+extension MLViewController: PlaygroundLiveViewMessageHandler {
+    public func receive(_ message: PlaygroundValue) {
+        repairing()
+
+        // guard let liveViewMessage = PlaygroundMessageToLiveView(playgroundValue: message) else { return }
+        
+        // switch liveViewMessage {
+        // case .repairing:
+        //     repairing()
+        // default:
+        //     break
+        // }
     }
 }
