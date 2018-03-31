@@ -6,7 +6,9 @@
 //
 
 import PlaygroundSupport
+import UIKit
 
 let page = PlaygroundPage.current
-
-page.liveView = MLViewController()
+if #available(iOS 11.2, *) {
+    page.liveView = MLViewController()
+}

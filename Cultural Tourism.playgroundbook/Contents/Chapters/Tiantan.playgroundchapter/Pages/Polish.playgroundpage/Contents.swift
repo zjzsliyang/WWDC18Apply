@@ -13,12 +13,12 @@ import PlaygroundSupport
 let page = PlaygroundPage.current
 let proxy = page.liveView as? PlaygroundRemoteLiveViewProxy
 
-func repairing() {
-
+func polish() {
+  proxy?.send(PlaygroundValue.string("polish"))
 }
 
-func identification() {
-
+func recognize() {
+    proxy?.send(PlaygroundValue.string("recognize"))
 }
 
 //#-end-hidden-code
@@ -50,6 +50,7 @@ func identification() {
  
  */
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, repairing(), identification())
+//#-code-completion(identifier, show, polish())
+//#-code-completion(identifier, show, recognize())
 
 

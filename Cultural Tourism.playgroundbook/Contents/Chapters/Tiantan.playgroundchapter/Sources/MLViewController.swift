@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Vision
+import CoreML
 import PlaygroundSupport
 
+@available(iOS 11.2, *)
 public class MLViewController: UIViewController {
 
     var backgroundView = UIImageView()
@@ -16,6 +19,8 @@ public class MLViewController: UIViewController {
 
     var paintings1 = UIImageView()
     var paintings2 = UIImageView()
+    var recognitionLabel1 = UILabel()
+    var recognitionLabel2 = UILabel()
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +45,66 @@ public class MLViewController: UIViewController {
         view.addSubview(paintings2)
     }
 
-    func repairing() {
+    func polish() {
+        // TODO: add animation
+        paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival_res.jpg")
+        paintings2.image = UIImage(named: "DwellingintheFuchunMountain_res.jpg")
 
+
+    }
+
+    func recognize() {
+        recognitionLabel1.frame = CGRect(x: 420, y: 10, width: 250, height: 200)
+        recognitionLabel2.frame = CGRect(x: 50, y: 450 + 800 / 6.0 + 150, width: 300, height: 200)
+        // recognitionLabel1.lineBreakMode = .byWordWrapping
+        recognitionLabel1.numberOfLines = 0
+        // recognitionLabel2.lineBreakMode = .byWordWrapping
+        recognitionLabel2.numberOfLines = 0
+        
+        recognizeUsingVision(image: paintings1.image!, label: recognitionLabel1)
+        recognizeUsingVision(image: paintings2.image!, label: recognitionLabel2)
+
+        view.addSubview(recognitionLabel1)
+        view.addSubview(recognitionLabel2)
+    }
+
+    func recognizeUsingVision(image: UIImage, label: UILabel) {
+        let model = DynastyRecognitionReduced()
+        guard let visionModel = try? VNCoreMLModel(for: model.model) else {
+            fatalError("something wrong")
+        }
+        let request = VNCoreMLRequest(model: visionModel) { request, error in
+            if let observations = request.results as? [VNClassificationObservation] {
+                let res = observations.prefix(through: 2).map { ($0.identifier, Double($0.confidence)) }
+                self.show(results: res, label: label)
+            }
+        }
+        request.imageCropAndScaleOption = .centerCrop
+        let handler1 = VNImageRequestHandler(cgImage: image.cgImage!)
+        try? handler1.perform([request])
+    }
+
+    typealias Recognition = (String, Double)
+
+    func show(results: [Recognition], label: UILabel) {
+        var s: [String] = []
+        for (i, pred) in results.enumerated() {
+            s.append(String(format: "%d: %@ (%3.2f%%)", i + 1, pred.0, pred.1 * 100))
+        }
+        label.text = s.joined(separator: "\n\n")
     }
 }
 
+@available(iOS 11.2, *)
 extension MLViewController: PlaygroundLiveViewMessageHandler {
     public func receive(_ message: PlaygroundValue) {
-        repairing()
-
+        polish()
+        recognize()
         // guard let liveViewMessage = PlaygroundMessageToLiveView(playgroundValue: message) else { return }
         
         // switch liveViewMessage {
-        // case .repairing:
-        //     repairing()
+        // case .polish:
+        //     polish()
         // default:
         //     break
         // }
