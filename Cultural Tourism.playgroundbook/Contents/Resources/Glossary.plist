@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Terms</key>
+	<dict>
+		<key>cosmic velocity</key>
+		<dict>
+			<key>Definition</key>
+			<string>The initial velocity which a body must have to be able to overcome the gravity of another object.
+ We have *The first cosmic velocity*, *The second cosmic velocity (escape velocity)*, *The third cosmic velocity* and *The fourth cosmic velocity*.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Brachistochrone Problem</key>
+		<dict>
+			<key>Definition</key>
+			<string>Given two points A and B in a vertical plane, what is the curve traced out by a point acted on only by gravity, which starts at A and reaches B in the shortest time.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Johann Bernoulli</key>
+		<dict>
+			<key>Definition</key>
+			<string>A Swiss mathematician and one of the many prominent mathematicians in the Bernoulli family. He is known for his contributions to infinitesimal calculus and educating Leonhard Euler in the pupil's youth.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Galileo</key>
+		<dict>
+			<key>Definition</key>
+			<string>An famous Italian polymath: astronomer, physicist, engineer, philosopher, and mathematician.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>calculus of variations</key>
+		<dict>
+			<key>Definition</key>
+			<string>A field of mathematical analysis that deals with maximizing or minimizing functionals, which are mappings from a set of functions to the real numbers.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Snell's law</key>
+		<dict>
+			<key>Definition</key>
+			<string>A formula used to describe the relationship between the angles of incidence and refraction, when referring to light or other waves passing through a boundary between two different isotropic media, such as water, glass, or air.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Newton</key>
+		<dict>
+			<key>Definition</key>
+			<string>An English mathematician, astronomer, and physicist (described in his own day as a "natural philosopher") who is widely recognised as one of the most influential scientists of all time and a key figure in the scientific revolution.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Gottfried Leibniz</key>
+		<dict>
+			<key>Definition</key>
+			<string>A German polymath and philosopher who occupies a prominent place in the history of mathematics and the history of philosophy, having developed differential and integral calculus independently of Isaac Newton.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Ehrenfried Walther von Tschirnhaus</key>
+		<dict>
+			<key>Definition</key>
+			<string>A German mathematician, physicist, physician, and philosopher.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>Guillaume de l'Hopital</key>
+		<dict>
+			<key>Definition</key>
+			<string>A French mathematician. His name is firmly associated with l'Hôpital's rule for calculating limits.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string></string>
+				<key>Title</key>
+				<string></string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>
