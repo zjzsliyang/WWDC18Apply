@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import PlaygroundSupport
 import ARKit
 import SceneKit
+import PlaygroundSupport
 
 @available(iOS 11.0, *)
 public class ARViewController: UIViewController, ARSCNViewDelegate {
@@ -23,7 +23,7 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
 
         backgroundView.image = UIImage(named: "bg.jpg")
-        imageView.frame = view.bounds
+        backgroundView.frame = view.bounds
         view.addSubview(backgroundView)
 
         imageView.image = UIImage(named: "tiantanbg.png")

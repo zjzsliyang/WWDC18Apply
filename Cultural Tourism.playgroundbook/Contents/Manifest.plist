@@ -15,7 +15,7 @@
 	<key>DeploymentTarget</key>
 	<string>ios11.0</string>
 	<key>SwiftVersion</key>
-	<string>4.1</string>
+	<string>4.0</string>
 	<key>Chapters</key>
 	<array>
 		<string>Tiantan.playgroundchapter</string>

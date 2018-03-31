@@ -9,4 +9,4 @@ import PlaygroundSupport
 
 let page = PlaygroundPage.current
 
-page.liveView = CMViewController()
+page.liveView = MLViewController()
