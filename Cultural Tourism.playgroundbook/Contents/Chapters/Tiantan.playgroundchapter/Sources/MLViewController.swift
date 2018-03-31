@@ -29,13 +29,13 @@ public class MLViewController: UIViewController {
         view.addSubview(backgroundView1)
 
         backgroundView2.image = UIImage(named: "bg2.png")
-        backgroundView2.frame = CGRect(x: 420, y: 650, width: 485 / 2.0, height: 674 / 2.0)
+        backgroundView2.frame = CGRect(x: 420, y: 700, width: 485 / 2.0, height: 674 / 2.0)
         view.addSubview(backgroundView2)
 
         paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival.jpg")
         paintings2.image = UIImage(named: "AThousandMilesofRiversandMountains.jpg")
-        paintings1.frame = CGRect(x: 0, y: 250, width: 800, height: 800 / 6.0)
-        paintings2.frame = CGRect(x: 0, y: 250 + 800 / 6.0, width: 800, height: 800 / 6.0)
+        paintings1.frame = CGRect(x: 0, y: 230, width: 800, height: 800 / 6.0)
+        paintings2.frame = CGRect(x: 0, y: 450 + 800 / 6.0, width: 800, height: 800 / 6.0)
         view.addSubview(paintings1)
         view.addSubview(paintings2)
     }
