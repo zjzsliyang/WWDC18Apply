@@ -21,6 +21,10 @@ public class MLViewController: UIViewController {
     var paintings2 = UIImageView()
     var recognitionLabel1 = UILabel()
     var recognitionLabel2 = UILabel()
+    var introLabel1 = TypewriterLabel()
+    var introLabel2 = TypewriterLabel()
+
+    var cnt = 0
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +53,28 @@ public class MLViewController: UIViewController {
         paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival_res.jpg")
         paintings2.image = UIImage(named: "DwellingintheFuchunMountain_res.jpg")
 
-        // TODO: add line animation
+        introLabel1.frame = CGRect(x: 30, y: 370, width: 300 , height: 200)
+        introLabel2.frame = CGRect(x: 360, y: 370, width: 300 , height: 200)
+        introLabel1.numberOfLines = 0
+        introLabel2.numberOfLines = 0
+
+        introLabel1.text = "Along the River During the Qingming Festival (above)\n\n Along the River During the Qingming Festival, also known by its Chinese name as the Qingming Shanghe Tu, is a painting by the Song dynasty artist Zhang Zeduan (1085–1145). It has been called \"China's Mona Lisa.\""
+        introLabel2.text = "Dwelling in the Fuchun Mountains (following)\n\n This is one of the few surviving works by the painter Huang Gongwang (1269–1354) and it is considered to be among his greatest works. The Chinese landscape painting was burnt into two pieces in 1650."
+
+        view.addSubview(introLabel1)
+        view.addSubview(introLabel2)
+
+        if cnt == 0 {
+            introLabel1.typingTimeInterval = 0.05
+            introLabel1.cancelTypewritingAnimation()
+            introLabel1.startTypewritingAnimation {
+                self.introLabel2.typingTimeInterval = 0.05
+                self.introLabel2.cancelTypewritingAnimation()
+                self.introLabel2.startTypewritingAnimation(completion: nil)
+                self.cnt += 1
+            }
+        }
+
     }
 
     func recognize() {
