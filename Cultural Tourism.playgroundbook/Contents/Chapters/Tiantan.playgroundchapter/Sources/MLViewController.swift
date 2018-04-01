@@ -40,8 +40,8 @@ public class MLViewController: UIViewController {
         backgroundView2.frame = CGRect(x: 420, y: 700, width: 485 / 2.0, height: 674 / 2.0)
         view.addSubview(backgroundView2)
 
-        paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival_bw.jpg")
-        paintings2.image = UIImage(named: "DwellingintheFuchunMountain_bw.jpg")
+        paintings1.image = UIImage(named: "DwellingintheFuchunMountain_bw.jpg")
+        paintings2.image = UIImage(named: "AlongRiverDuringQingmingFestival_bw.jpg")
         paintings1.frame = CGRect(x: 0, y: 230, width: 800, height: 800 / 6.0)
         paintings2.frame = CGRect(x: 0, y: 450 + 800 / 6.0, width: 800, height: 800 / 6.0)
         view.addSubview(paintings1)
@@ -50,16 +50,16 @@ public class MLViewController: UIViewController {
 
     func polish() {
         // TODO: add imageview animation
-        paintings1.image = UIImage(named: "AlongRiverDuringQingmingFestival_res.jpg")
-        paintings2.image = UIImage(named: "DwellingintheFuchunMountain_res.jpg")
+        paintings1.image = UIImage(named: "DwellingintheFuchunMountain_res.jpg")
+        paintings2.image = UIImage(named: "AlongRiverDuringQingmingFestival_res.jpg")
 
         introLabel1.frame = CGRect(x: 30, y: 370, width: 300 , height: 200)
         introLabel2.frame = CGRect(x: 360, y: 370, width: 300 , height: 200)
         introLabel1.numberOfLines = 0
         introLabel2.numberOfLines = 0
 
-        introLabel1.text = "Along the River During the Qingming Festival (above)\n\n Along the River During the Qingming Festival, also known by its Chinese name as the Qingming Shanghe Tu, is a painting by the Song dynasty artist Zhang Zeduan (1085–1145). It has been called \"China's Mona Lisa.\""
-        introLabel2.text = "Dwelling in the Fuchun Mountains (following)\n\n This is one of the few surviving works by the painter Huang Gongwang (1269–1354) and it is considered to be among his greatest works. The Chinese landscape painting was burnt into two pieces in 1650."
+        introLabel1.text = "Dwelling in the Fuchun Mountains (above)\n\n This is one of the few surviving works by the painter Huang Gongwang (1269–1354) and it is considered to be among his greatest works. The Chinese landscape painting was burnt into two pieces in 1650."
+        introLabel2.text = "Along the River During the Qingming Festival (following)\n\n Along the River During the Qingming Festival, also known by its Chinese name as the Qingming Shanghe Tu, is a painting by the Song dynasty artist Zhang Zeduan (1085–1145). It has been called \"China's Mona Lisa.\""
 
         view.addSubview(introLabel1)
         view.addSubview(introLabel2)
@@ -79,10 +79,11 @@ public class MLViewController: UIViewController {
 
     func recognize() {
         recognitionLabel1.frame = CGRect(x: 420, y: 10, width: 250, height: 200)
-        recognitionLabel2.frame = CGRect(x: 50, y: 450 + 800 / 6.0 + 150, width: 300, height: 200)
+        recognitionLabel2.frame = CGRect(x: 50, y: 450 + 800 / 6.0 + 120, width: 350, height: 200)
         recognitionLabel1.numberOfLines = 0
         recognitionLabel2.numberOfLines = 0
-        
+        recognitionLabel1.font = UIFont(name: "Avenir-Light", size: 20)
+        recognitionLabel2.font = UIFont(name: "Avenir-Light", size: 20)
         recognizeUsingVision(image: paintings1.image!, label: recognitionLabel1)
         recognizeUsingVision(image: paintings2.image!, label: recognitionLabel2)
 
