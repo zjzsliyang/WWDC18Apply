@@ -28,18 +28,30 @@ func changePainting() {
 //#-end-hidden-code
 /*:
 
- Aha! You have found there! 
- 
- The staff of the Temple of Heaven have some trouble.
+ *Please use this playgroundbook in landscape mode.*
+
+ Aha! After you exploring the Temple of Heaven. There are several faded paintings inside.
 
  As a programmer, help them with your new learned machine learning knowledge!
 
-Good luck!
+ Good luck!
 
+ * callout(use mlmodel to colorize the faded paintings):
+ `polish()`
 
- Note:
+ * callout(use mlmodel to speculate the dynasty of the painting):
+ `recognize()`
 
- *I trained two mlmodels, one to recognize the dytasty and the other is used to colorize. Since WWDC limits the size up to 25MB, I can not add colorize.mlmodel there and use the result after colorization, the mlmodel can be found on my GitHub.*
+ * callout(change to another painting):
+ `changePainting()`
+
+ Special feature introduction: 
+ 
+ Slide your finger on the painting to observe the part of the painting in the semicircular "bronze mirror".
+
+ Note: Do not forget to remove the previous function while call a new function!
+
+ *I have trained two mlmodels, the one use to colorize is pretty large. Since WWDC limits the size up to 25MB, I can only use the result after colorization, the mlmodel can be found on my GitHub: https://github.com/zjzsliyang/WWDC18Apply/.*
 
  
  */
