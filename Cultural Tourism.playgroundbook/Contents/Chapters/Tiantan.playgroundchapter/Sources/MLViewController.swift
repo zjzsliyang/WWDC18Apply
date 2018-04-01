@@ -102,7 +102,7 @@ public class MLViewController: UIViewController {
         recognitionTitle.text = "Dynasty Possibility:"
         view.addSubview(recognitionTitle)
 
-        recognitionLabel.frame = CGRect(x: view.frame.height / 4, y: view.frame.height / 6, width: 250, height: view.frame.height / 8)
+        recognitionLabel.frame = CGRect(x: view.frame.height / 4, y: view.frame.height / 6, width: 200, height: view.frame.height / 8)
         recognitionLabel.numberOfLines = 0
         recognitionLabel.font = UIFont(name: "Avenir-Heavy", size: 15)
         recognitionLabel.textColor = UIColor(red: 151 / 255, green: 121 / 255, blue: 102 / 255, alpha: 1)
@@ -118,7 +118,7 @@ public class MLViewController: UIViewController {
         }
         let request = VNCoreMLRequest(model: visionModel) { request, error in
             if let observations = request.results as? [VNClassificationObservation] {
-                let res = observations.prefix(through: 2).map { ($0.identifier, Double($0.confidence)) }
+                let res = observations.prefix(through: 1).map { ($0.identifier, Double($0.confidence)) }
                 self.show(results: res, label: label)
             }
         }
