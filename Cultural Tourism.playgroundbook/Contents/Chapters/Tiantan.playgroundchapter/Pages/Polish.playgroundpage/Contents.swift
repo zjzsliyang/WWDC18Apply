@@ -23,30 +23,20 @@ func recognize() {
 
 //#-end-hidden-code
 /*:
- **Goal:** Launch the rocket🚀 and make it turn around the earth🌏.
- 
- Remember the [cosmic velocity](glossary://cosmic%20velocity).
- 
- There is a related history for your reference: **Newton's cannonball**
- 
- *Newton's cannonball was a thought experiment Isaac Newton used to hypothesize that the force of gravity was universal, and it was the key force for planetary motion. It appeared in his book(A Treatise of the System of the World).*
- 
- Some data(approximately) is shown as follows:
- 
- * callout(Gravitational acceleration & Earth radius):
-    *g = 10 m/s*
- 
-    *R = 6241 km*
 
+ Aha! You have found there! 
  
- You may use the function:
- 
- * callout(calculate the square root):
-    `sqrt()`
- 
- 1. Calculate the rocket speed(*km/s*) to make it turn around the earth, just the value and the formula with number can both OK👌!
- 
- 2. Fire🔥 with the function `launchRocket()` !
+ The staff of the Temple of Heaven have some trouble.
+
+ As a programmer, help them with your new learned machine learning knowledge!
+
+Good luck!
+
+
+ Note:
+
+ *I trained two mlmodels, one to recognize the dytasty and the other is used to colorize. Since WWDC limits the size up to 25MB, I can not add colorize.mlmodel there and use the result after colorization, the mlmodel can be found on my GitHub.*
+
  
  */
 //#-code-completion(everything, hide)
