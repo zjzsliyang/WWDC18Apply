@@ -21,6 +21,8 @@ func explore() {
 //#-end-hidden-code
 /*:
 
+ *Please use this playgroundbook in landscape mode.*
+ 
  Welcome, travelers!
 
  Have you ever heard about the Temple of Heaven in Beijing? 
@@ -30,9 +32,15 @@ func explore() {
  * callout(explore the Temple of Heaven on a planar surface):
  `explore()`
  
- I built an AR Model of the Temple of Heaven. Hurry up and have a look now, the Earth is by your side!
+ 1. Use the camera to detect a plain surface.
+
+ 2. Wait a few seconds until the Temple of Heaven appears before you.
+
+ 3. Now you can observe this historical legend from any angle you want, the Earth is by your side!
 
  Note: Since the model is pretty large and complicated, you may **wait for a moment while capturing a planar surface that are perpendicular to gravity**.
+
+ If there is still no AR model for thirty seconds, you can try to find another plane.
 
 
  */
