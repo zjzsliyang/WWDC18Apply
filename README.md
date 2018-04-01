@@ -10,7 +10,7 @@
 
 [Colorful Image Colorization](https://github.com/richzhang/colorization): Automatic colorization using deep neural networks. 
 
-I preprocess the image and convert from caffe model  to mlmodel. It is used to colorize black and white pictures
+I preprocess the image and convert from caffe model to mlmodel. It is used to colorize black and white pictures.
 
 ### Features and Technologies
 
