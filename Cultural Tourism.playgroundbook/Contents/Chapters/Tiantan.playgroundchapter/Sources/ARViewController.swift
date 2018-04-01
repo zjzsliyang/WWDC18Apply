@@ -13,7 +13,6 @@ import PlaygroundSupport
 @available(iOS 11.0, *)
 public class ARViewController: UIViewController, ARSCNViewDelegate {
 
-    var imageView = UIImageView()
     var backgroundView = UIImageView()
     var blurView: UIVisualEffectView?
     var cnt = 0
@@ -24,12 +23,9 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
 
         backgroundView.image = UIImage(named: "bg.jpg")
-        backgroundView.frame = view.bounds
+        backgroundView.backgroundColor = UIColor.black
+        backgroundView.frame = CGRect(x: 0, y: 0, width: view.frame.height / 1.5, height: view.frame.height)
         view.addSubview(backgroundView)
-
-        imageView.image = UIImage(named: "tiantanbg.png")
-        imageView.frame = view.bounds
-        view.addSubview(imageView)
     }
 
     override public func viewDidAppear(_ animated: Bool) {
@@ -96,7 +92,6 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         let arscnView = ARSCNView(frame: view.frame)
         arscnView.delegate = self
         view.addSubview(arscnView)
-        imageView.isHidden = true
         backgroundView.isHidden = true
         
         arscnView.translatesAutoresizingMaskIntoConstraints = false
