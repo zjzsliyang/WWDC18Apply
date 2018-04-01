@@ -14,20 +14,19 @@ import PlaygroundSupport
 public class MLViewController: UIViewController {
     let materials = ["DwellingintheFuchunMountain_bw.jpg", "AlongRiverDuringQingmingFestival_bw.jpg"]
     let materialsRes = ["DwellingintheFuchunMountain_res.jpg", "AlongRiverDuringQingmingFestival_res.jpg"]
-    let descriptions = ["Dwelling in the Fuchun Mountains \n\n This is one of the few surviving works by the painter Huang Gongwang (1269–1354) and it is considered to be among his greatest works. The Chinese landscape painting was burnt into two pieces in 1650.", "Along the River During the Qingming Festival \n\n Along the River During the Qingming Festival, also known by its Chinese name as the Qingming Shanghe Tu, is a painting by the Song dynasty artist Zhang Zeduan (1085–1145). It has been called \"China's Mona Lisa.\""]
     var index = 0
-    var colorized = 0
 
     var backgroundView = UIImageView()
     var paintings = UIImageView()
     var paintingsNew = UIImageView()
     var detailView = UIImageView()
     var recognitionLabel = UILabel()
+    let recognitionTitle = UILabel()
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        backgroundView.image = UIImage(named: "bg2.jpg")
+        backgroundView.image = UIImage(named: "bg" + String(describing: index) + ".jpg")
         backgroundView.frame = CGRect(x: 0, y: 0, width: view.frame.height / 1.5, height: view.frame.height)
         view.addSubview(backgroundView)
 
@@ -36,6 +35,13 @@ public class MLViewController: UIViewController {
         paintings.frame = CGRect(x: 10, y: view.frame.height - 130 - view.frame.width / 12.0, width: view.frame.width / 2.0 - 20, height: view.frame.width / 12.0)
         paintings.clipsToBounds = true
         view.insertSubview(paintings, at: 2)
+
+        paintingsNew.image = UIImage(named: materialsRes[index])
+        paintingsNew.alpha = 0
+        paintingsNew.contentMode = .scaleAspectFill
+        paintingsNew.frame = paintings.frame
+        paintingsNew.clipsToBounds = true
+        view.insertSubview(paintingsNew, at: 3)
 
         let outerView = UIView(frame: paintings.frame)
         outerView.clipsToBounds = false
@@ -59,8 +65,8 @@ public class MLViewController: UIViewController {
         if !(paintings.bounds.contains(point)) {
             return
         }
-        var tmpView = UIImageView()
-        if colorized == 0 {
+        let tmpView = UIImageView()
+        if paintingsNew.alpha == 0 {
             tmpView.image = paintings.image
         } else {
             tmpView.image = paintingsNew.image
@@ -83,14 +89,6 @@ public class MLViewController: UIViewController {
     }
 
     func polish() {
-        colorized = 1
-        paintingsNew.image = UIImage(named: materialsRes[index])
-        paintingsNew.contentMode = .scaleAspectFill
-        paintingsNew.frame = paintings.frame
-        paintingsNew.clipsToBounds = true
-        paintingsNew.alpha = 0
-        view.insertSubview(paintingsNew, at: 3)
-
         UIView.animate(withDuration: 3, delay: 0.0, options: [], animations: {
             self.paintingsNew.alpha = 1
         }, completion: { (finished: Bool) in
@@ -99,7 +97,6 @@ public class MLViewController: UIViewController {
     }
 
     func recognize() {
-        let recognitionTitle = UILabel()
         recognitionTitle.frame = CGRect(x: view.frame.height / 4 - 20, y: view.frame.height / 10 - 10, width: 250, height: view.frame.height / 10)
         recognitionTitle.font = UIFont(name: "Avenir-Heavy", size: 18)
         recognitionTitle.text = "Dynasty Possibility:"
@@ -142,8 +139,12 @@ public class MLViewController: UIViewController {
 
     func changePainting() {
         index = (index + 1) % 2
-        
+        backgroundView.image = UIImage(named: "bg" + String(describing: index) + ".jpg")
         paintings.image = UIImage(named: materials[index])
+        paintingsNew.image = UIImage(named: materialsRes[index])
+        paintingsNew.alpha = 0
+        recognitionTitle.removeFromSuperview()
+        recognitionLabel.removeFromSuperview()
         updateDetailView(point: CGPoint(x: 0, y: 0))
     }
 }
