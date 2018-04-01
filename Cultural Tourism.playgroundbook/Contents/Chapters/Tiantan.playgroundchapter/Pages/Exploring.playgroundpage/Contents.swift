@@ -21,7 +21,7 @@ func explore() {
 //#-end-hidden-code
 /*:
 
- *Please use this playgroundbook in landscape mode.*
+ *Please use this playgroundbook in landscape mode and the iOS 11.2 or newer.*
  
  Welcome, travelers!
 

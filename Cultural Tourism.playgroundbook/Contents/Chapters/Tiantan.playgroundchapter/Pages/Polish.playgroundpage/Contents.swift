@@ -28,7 +28,7 @@ func changePainting() {
 //#-end-hidden-code
 /*:
 
- *Please use this playgroundbook in landscape mode.*
+ *Please use this playgroundbook in landscape mode and the iOS 11.2 or newer.*
 
  Aha! After you exploring the Temple of Heaven. There are several faded paintings inside.
 

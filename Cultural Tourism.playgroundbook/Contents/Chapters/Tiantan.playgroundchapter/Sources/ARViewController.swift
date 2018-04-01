@@ -117,7 +117,7 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         guard let planeAnchor = anchor as? ARPlaneAnchor else {
             return
         }
-        // TODO: to be optimized
+        
         if cnt == 0 {
             let x = CGFloat(planeAnchor.center.x)
             let y = CGFloat(planeAnchor.center.y)
