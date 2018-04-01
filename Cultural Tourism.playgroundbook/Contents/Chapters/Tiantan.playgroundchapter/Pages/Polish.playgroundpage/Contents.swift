@@ -21,6 +21,10 @@ func recognize() {
     proxy?.send(.string("recognize"))
 }
 
+func changePainting() {
+    proxy?.send(.string("changePainting"))
+}
+
 //#-end-hidden-code
 /*:
 
@@ -42,5 +46,4 @@ Good luck!
 //#-code-completion(everything, hide)
 //#-code-completion(identifier, show, polish())
 //#-code-completion(identifier, show, recognize())
-
-
+//#-code-completion(identifier, show, changePainting())

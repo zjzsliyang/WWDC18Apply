@@ -23,7 +23,6 @@ public class ARViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
 
         backgroundView.image = UIImage(named: "bg.jpg")
-        backgroundView.backgroundColor = UIColor.black
         backgroundView.frame = CGRect(x: 0, y: 0, width: view.frame.height / 1.5, height: view.frame.height)
         view.addSubview(backgroundView)
     }

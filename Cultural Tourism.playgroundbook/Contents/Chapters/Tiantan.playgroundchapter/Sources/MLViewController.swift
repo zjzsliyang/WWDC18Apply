@@ -12,82 +12,106 @@ import PlaygroundSupport
 
 @available(iOS 11.2, *)
 public class MLViewController: UIViewController {
+    let materials = ["DwellingintheFuchunMountain_bw.jpg", "AlongRiverDuringQingmingFestival_bw.jpg"]
+    let materialsRes = ["DwellingintheFuchunMountain_res.jpg", "AlongRiverDuringQingmingFestival_res.jpg"]
+    let descriptions = ["Dwelling in the Fuchun Mountains \n\n This is one of the few surviving works by the painter Huang Gongwang (1269–1354) and it is considered to be among his greatest works. The Chinese landscape painting was burnt into two pieces in 1650.", "Along the River During the Qingming Festival \n\n Along the River During the Qingming Festival, also known by its Chinese name as the Qingming Shanghe Tu, is a painting by the Song dynasty artist Zhang Zeduan (1085–1145). It has been called \"China's Mona Lisa.\""]
+    var index = 0
+    var colorized = 0
 
-    var backgroundView1 = UIImageView()
-    var backgroundView2 = UIImageView()
-
-    var paintings1 = UIImageView()
-    var paintings2 = UIImageView()
-    var recognitionLabel1 = UILabel()
-    var recognitionLabel2 = UILabel()
-    var introLabel1 = TypewriterLabel()
-    var introLabel2 = TypewriterLabel()
-
-    var cnt = 0
+    var backgroundView = UIImageView()
+    var paintings = UIImageView()
+    var paintingsNew = UIImageView()
+    var detailView = UIImageView()
+    var recognitionLabel = UILabel()
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
 
-        backgroundView1.image = UIImage(named: "bg1.png")
-        backgroundView1.frame = CGRect(x: 0, y: 0, width: 1200 / 3.0 , height: 581 / 3.0)
-        backgroundView1.alpha = 0.4
-        view.addSubview(backgroundView1)
+        backgroundView.image = UIImage(named: "bg2.jpg")
+        backgroundView.frame = CGRect(x: 0, y: 0, width: view.frame.height / 1.5, height: view.frame.height)
+        view.addSubview(backgroundView)
 
-        backgroundView2.image = UIImage(named: "bg2.png")
-        backgroundView2.frame = CGRect(x: 420, y: 700, width: 485 / 2.0, height: 674 / 2.0)
-        backgroundView2.alpha = 0.4
-        view.addSubview(backgroundView2)
+        paintings.image = UIImage(named: materials[index])
+        paintings.contentMode = .scaleAspectFill
+        paintings.frame = CGRect(x: 10, y: view.frame.height - 130 - view.frame.width / 12.0, width: view.frame.width / 2.0 - 20, height: view.frame.width / 12.0)
+        paintings.clipsToBounds = true
+        view.insertSubview(paintings, at: 2)
 
-        paintings1.image = UIImage(named: "DwellingintheFuchunMountain_bw.jpg")
-        paintings2.image = UIImage(named: "AlongRiverDuringQingmingFestival_bw.jpg")
-        paintings1.frame = CGRect(x: 0, y: 230, width: 800, height: 800 / 6.0)
-        paintings2.frame = CGRect(x: 0, y: 450 + 800 / 6.0, width: 800, height: 800 / 6.0)
-        view.addSubview(paintings1)
-        view.addSubview(paintings2)
+        let outerView = UIView(frame: paintings.frame)
+        outerView.clipsToBounds = false
+        outerView.layer.shadowColor = UIColor.black.cgColor
+        outerView.layer.shadowOpacity = 1
+        outerView.layer.shadowOffset = CGSize.zero
+        outerView.layer.shadowPath = UIBezierPath(roundedRect: outerView.bounds, cornerRadius: 0).cgPath
+        view.insertSubview(outerView, at: 1)
+
+        detailView.frame = CGRect(x: view.frame.width / 2 - view.frame.height / 4, y: view.frame.height / 5, width: view.frame.height / 2, height: view.frame.height / 2)
+        detailView.layer.masksToBounds = false
+        detailView.clipsToBounds = true
+        detailView.layer.borderWidth = 1
+        detailView.layer.borderColor = UIColor(red: 151 / 255, green: 121 / 255, blue: 102 / 255, alpha: 1).cgColor
+        detailView.layer.cornerRadius = detailView.frame.height / 2
+        updateDetailView(point: CGPoint(x: 0, y: 0))
+        view.addSubview(detailView)
+    }
+
+    func updateDetailView(point: CGPoint) {
+        if !(paintings.bounds.contains(point)) {
+            return
+        }
+        var tmpView = UIImageView()
+        if colorized == 0 {
+            tmpView.image = paintings.image
+        } else {
+            tmpView.image = paintingsNew.image
+        }
+        let detailImage = tmpView.image?.cgImage?.cropping(to: CGRect(x: 3 * point.x, y: 0, width: detailView.frame.width, height: detailView.frame.height))
+        detailView.contentMode = .scaleAspectFill
+        detailView.image = UIImage(cgImage: detailImage!)
+    }
+
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch: UITouch = touches.first {
+            updateDetailView(point: touch.location(in: self.paintings))
+        }
+    }
+
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch: UITouch = touches.first {
+            updateDetailView(point: touch.location(in: self.paintings))
+        }
     }
 
     func polish() {
-        // TODO: add imageview animation
-        paintings1.image = UIImage(named: "DwellingintheFuchunMountain_res.jpg")
-        paintings2.image = UIImage(named: "AlongRiverDuringQingmingFestival_res.jpg")
+        colorized = 1
+        paintingsNew.image = UIImage(named: materialsRes[index])
+        paintingsNew.contentMode = .scaleAspectFill
+        paintingsNew.frame = paintings.frame
+        paintingsNew.clipsToBounds = true
+        paintingsNew.alpha = 0
+        view.insertSubview(paintingsNew, at: 3)
 
-        introLabel1.frame = CGRect(x: 30, y: 370, width: 300 , height: 200)
-        introLabel2.frame = CGRect(x: 360, y: 370, width: 300 , height: 200)
-        introLabel1.numberOfLines = 0
-        introLabel2.numberOfLines = 0
-
-        introLabel1.text = "Dwelling in the Fuchun Mountains (above)\n\n This is one of the few surviving works by the painter Huang Gongwang (1269–1354) and it is considered to be among his greatest works. The Chinese landscape painting was burnt into two pieces in 1650."
-        introLabel2.text = "Along the River During the Qingming Festival (following)\n\n Along the River During the Qingming Festival, also known by its Chinese name as the Qingming Shanghe Tu, is a painting by the Song dynasty artist Zhang Zeduan (1085–1145). It has been called \"China's Mona Lisa.\""
-
-        view.addSubview(introLabel1)
-        view.addSubview(introLabel2)
-
-        if cnt == 0 {
-            introLabel1.typingTimeInterval = 0.05
-            introLabel1.cancelTypewritingAnimation()
-            introLabel1.startTypewritingAnimation {
-                self.introLabel2.typingTimeInterval = 0.05
-                self.introLabel2.cancelTypewritingAnimation()
-                self.introLabel2.startTypewritingAnimation(completion: nil)
-                self.cnt += 1
-            }
-        }
-
+        UIView.animate(withDuration: 3, delay: 0.0, options: [], animations: {
+            self.paintingsNew.alpha = 1
+        }, completion: { (finished: Bool) in
+            self.updateDetailView(point: CGPoint(x: 0, y: 0))
+        })
     }
 
     func recognize() {
-        recognitionLabel1.frame = CGRect(x: 420, y: 10, width: 250, height: 200)
-        recognitionLabel2.frame = CGRect(x: 50, y: 450 + 800 / 6.0 + 120, width: 350, height: 200)
-        recognitionLabel1.numberOfLines = 0
-        recognitionLabel2.numberOfLines = 0
-        recognitionLabel1.font = UIFont(name: "Avenir-Light", size: 20)
-        recognitionLabel2.font = UIFont(name: "Avenir-Light", size: 20)
-        recognizeUsingVision(image: paintings1.image!, label: recognitionLabel1)
-        recognizeUsingVision(image: paintings2.image!, label: recognitionLabel2)
+        let recognitionTitle = UILabel()
+        recognitionTitle.frame = CGRect(x: view.frame.height / 4 - 20, y: view.frame.height / 10 - 10, width: 250, height: view.frame.height / 10)
+        recognitionTitle.font = UIFont(name: "Avenir-Heavy", size: 18)
+        recognitionTitle.text = "Dynasty Possibility:"
+        view.addSubview(recognitionTitle)
 
-        view.addSubview(recognitionLabel1)
-        view.addSubview(recognitionLabel2)
+        recognitionLabel.frame = CGRect(x: view.frame.height / 4, y: view.frame.height / 6, width: 250, height: view.frame.height / 8)
+        recognitionLabel.numberOfLines = 0
+        recognitionLabel.font = UIFont(name: "Avenir-Heavy", size: 15)
+        recognitionLabel.textColor = UIColor(red: 151 / 255, green: 121 / 255, blue: 102 / 255, alpha: 1)
+        recognizeUsingVision(image: paintings.image!, label: recognitionLabel)
+
+        view.addSubview(recognitionLabel)
     }
 
     func recognizeUsingVision(image: UIImage, label: UILabel) {
@@ -115,6 +139,13 @@ public class MLViewController: UIViewController {
         }
         label.text = s.joined(separator: "\n\n")
     }
+
+    func changePainting() {
+        index = (index + 1) % 2
+        
+        paintings.image = UIImage(named: materials[index])
+        updateDetailView(point: CGPoint(x: 0, y: 0))
+    }
 }
 
 @available(iOS 11.2, *)
@@ -127,6 +158,9 @@ extension MLViewController: PlaygroundLiveViewMessageHandler {
             }
             if text == "recognize" {
                 recognize()
+            }
+            if text == "changePainting" {
+                changePainting()
             }
         default:
             break
