@@ -23,14 +23,17 @@ func explore() {
 
  Welcome, travelers!
 
- Have you heard about the Temple of Heaven? 
- An imperial complex of religious buildings situated in the southeastern part of central Beijing, China. The complex was visited by the Emperors of the Ming and Qing dynasties for annual ceremonies of prayer to Heaven for good harvest. It has been regarded as a Taoist temple, although Chinese heaven worship, especially by the reigning monarch of the day, predates Taoism.
+ Have you ever heard about the Temple of Heaven in Beijing? 
 
- hurry up to have a look now, Earth is by your side!
+ The Temple of Heaven is an imperial complex of religious buildings situated in the southeastern part of central Beijing, China. The complex was visited by the Emperors of the Ming and Qing dynasties for annual ceremonies of prayer to Heaven for good harvest. It has been regarded as a Taoist temple, although Chinese heaven worship, especially by the reigning monarch of the day, predates Taoism.
+
+ * callout(explore the Temple of Heaven on a planar surface):
+ `explore()`
  
- **Try this:**
+ I built an AR Model of the Temple of Heaven. Hurry up and have a look now, the Earth is by your side!
 
- Use the `explore()` method below to back to Beijing!
+ Note: Since the model is pretty large and complicated, you may **wait for a moment while capturing a planar surface that are perpendicular to gravity**.
+
 
  */
 //#-code-completion(everything, hide)
